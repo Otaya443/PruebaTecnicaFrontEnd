@@ -1,0 +1,47 @@
+<h2 class="text-center">Crear un álbum</h2>
+
+<div class="container mt-4">
+  <form [formGroup]="albumForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre del Álbum</label>
+      <input type="text" id="name" class="form-control" formControlName="name" />
+    </div>
+
+    <div class="mb-3">
+      <label for="cover" class="form-label">Portada del Álbum (URL de la imagen)</label>
+      <input type="text" id="cover" class="form-control" formControlName="cover" placeholder="http://servidor/imagenalbum.png" />
+      <div *ngIf="albumForm.get('cover')?.invalid && albumForm.get('cover')?.touched">
+        <small class="text-danger">La portada del álbum es obligatoria y debe ser una URL válida.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="releaseDate" class="form-label">Fecha de Lanzamiento</label>
+      <input type="date" id="releaseDate" class="form-control" formControlName="releaseDate" />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="genre" class="form-label">Género</label>
+      <select id="genre" class="form-select" formControlName="genre">
+        <option value="" disabled>Selecciona un género</option>
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="recordLabel" class="form-label">Discográfica</label>
+      <select id="recordLabel" class="form-select" formControlName="recordLabel">
+        <option value="" disabled>Selecciona una discográfica</option>
+        <option *ngFor="let label of recordLabel" [value]="label">{{ label }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary me-3" [disabled]="albumForm.invalid">Guardar Álbum</button>
+
+    <a class="btn btn-danger" routerLink="">Cancelar</a>
+  </form>
+</div>

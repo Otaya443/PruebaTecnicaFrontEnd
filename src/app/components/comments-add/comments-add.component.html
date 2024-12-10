@@ -1,0 +1,20 @@
+<h2 class="text-center">Crear un álbum</h2>
+
+<div class="container mt-4">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripcion del comentario</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating</label>
+      <input type="number" id="rating" class="form-control" formControlName="rating" placeholder="rating" />
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary me-3" [disabled]="commentForm.invalid">Guardar Álbum</button>
+
+    <a class="btn btn-danger" routerLink="">Cancelar</a>
+  </form>
+</div>

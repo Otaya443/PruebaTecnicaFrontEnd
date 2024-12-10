@@ -1,0 +1,41 @@
+<div class="container">
+    <h2 class="text-center">Detalle del Álbum</h2>
+  
+    <div *ngIf="album" class="album-detail">
+      <div class="row">
+        <div class="col-md-6">
+          <img [src]="album.cover" class="img-fluid" alt="Cover image">
+        </div>
+        <div class="col-md-6">
+          <h3>{{ album.name }}</h3>
+          <p><strong>Fecha de lanzamiento:</strong> {{ album.releaseDate | date }}</p>
+          <p><strong>Género:</strong> {{ album.genre }}</p>
+          <p><strong>Disquera:</strong> {{ album.recordLabel }}</p>
+          <p><strong>Descripción:</strong> {{ album.description }}</p>
+          <div  class="table-responsive" style="max-height: 30%;">
+            <table >
+              <thead>
+                <th scope="col" >Descripcion</th>
+                <th scope="col" class="px-6">Calificacion</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of album.comments">
+                  <td> {{ c.description }}</td>
+                  <td> {{ c.rating }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+        </div>
+      </div>
+  
+      <div class="text-center mt-3">
+        <a class="btn btn-secondary" routerLink="">Volver a la lista</a>
+      </div>
+    </div>
+    <div *ngIf="!album" class="alert alert-warning">
+      <p>El álbum no se encuentra.</p>
+    </div>
+  </div>
+  
